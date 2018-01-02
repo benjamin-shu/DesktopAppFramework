@@ -1,7 +1,7 @@
 package daf;
 
 import daf.ui.AppGUI;
-import daf.props.PropertiesManager;
+import daf.props.AppPropertiesManager;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,7 +20,7 @@ public abstract class AppTemplate extends Application {
      * An instance of the PropertiesManager singleton used to handle
      * loading String properties from XML files.
      */
-    protected PropertiesManager propsManager;
+    protected AppPropertiesManager propsManager;
     /**
      * The application name/title. Loaded from an XML file by this
      * AppTemplate's PropertiesManager and passed to the AppGUI on
@@ -40,11 +40,20 @@ public abstract class AppTemplate extends Application {
      */
     protected AppGUI gui;
     
+    /**
+     * Accessor methods for the AppTemplate's data fields.
+     */
     public String getName() { return this.name; }
     public Image getImage() { return this.icon; }
     public AppGUI getGUI() { return this.gui; }
+    /**
+     * 
+     */
     @Override
     public void start(Stage stage) {
         
+    }
+    public boolean loadProperties() {
+        return false;
     }
 }
