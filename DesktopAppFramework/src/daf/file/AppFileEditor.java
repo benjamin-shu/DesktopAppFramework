@@ -7,7 +7,7 @@ import daf.data.AppDataManager;
  * 
  * @author Benjamin Shu
  */
-public interface AppFileEditor extends AppFileManager {
+public interface AppFileEditor extends AppFile {
     public void makeNewFile(AppDataManager data, String filePath);
     public void saveToFile(AppDataManager data, String filePath);
     public void loadFromFile(AppDataManager data, String filePath);

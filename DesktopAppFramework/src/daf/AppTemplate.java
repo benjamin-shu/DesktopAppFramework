@@ -1,7 +1,6 @@
 package daf;
 
 import daf.ui.AppGUI;
-import daf.props.AppPropertiesManager;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,14 +16,7 @@ import javafx.scene.image.Image;
  */
 public abstract class AppTemplate extends Application {
     /**
-     * An instance of the PropertiesManager singleton used to handle
-     * loading String properties from XML files.
-     */
-    protected AppPropertiesManager propsManager;
-    /**
-     * The application name/title. Loaded from an XML file by this
-     * AppTemplate's PropertiesManager and passed to the AppGUI on
-     * initialization.
+     * The application name/title.
      */
     protected String name;
     /**
@@ -39,21 +31,34 @@ public abstract class AppTemplate extends Application {
      * be provided by subclasses of AppGUI.
      */
     protected AppGUI gui;
-    
     /**
-     * Accessor methods for the AppTemplate's data fields.
+     * Accessor method for the AppTemplate's name.
+     * 
+     * @return The name of the application.
      */
     public String getName() { return this.name; }
+    /**
+     * Accessor method for the AppTemplate's icon.
+     * 
+     * @return The icon used for this application on the task bar and desktop.
+     */
     public Image getImage() { return this.icon; }
+    /**
+     * Accessor method for the AppTemplate's graphical user interface.
+     * 
+     * @return An abstracted representation of the application's GUI.
+     */
     public AppGUI getGUI() { return this.gui; }
     /**
-     * 
+     * Initialization method for constructing the application's components.
+     */
+    public abstract void buildApp();
+    /**
+     * Overridden implementation of start(Stage s) from 
+     * javafx.stage.Stage for running the application.
      */
     @Override
     public void start(Stage stage) {
         
-    }
-    public boolean loadProperties() {
-        return false;
     }
 }
