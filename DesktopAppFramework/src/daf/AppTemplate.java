@@ -1,6 +1,6 @@
 package daf;
 
-import daf.ui.AppGUI;
+import daf.ui.*;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -51,14 +51,19 @@ public abstract class AppTemplate extends Application {
     public AppGUI getGUI() { return this.gui; }
     /**
      * Initialization method for constructing the application's components.
+     * Must be overridden by the subclass.
      */
     public abstract void buildApp();
     /**
      * Overridden implementation of start(Stage s) from 
      * javafx.stage.Stage for running the application.
+     * 
+     * @param stage The Stage object provided by the main thread.
      */
     @Override
     public void start(Stage stage) {
-        
+        // gui = new AppGUI(this, stage);
+        buildApp();
+        stage.show();
     }
 }

@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
  * 
  * @author Benjamin Shu
  */
-public abstract class AppGUI {
+public class AppGUI {
     /**
      * The AppTemplate instance that this AppGUI is associated with.
      */
@@ -28,22 +28,42 @@ public abstract class AppGUI {
      */
     protected String title;
     /**
-     * 
+     * The instance of Stage provided by the Java main thread.
      */
     protected Stage stage;
     /**
-     * 
+     * The Scene instance that will contain this GUI's content.
      */
     protected Scene scene;
     /**
-     * 
+     * An instance of Pane to represent the layout/arrangement 
+     * of content in this GUI's Scene. Can be substituted with 
+     * a Pane subclass like BorderPane, GridPane, etc.
      */
     protected Pane layout;
-}
-class EditorGUI extends AppGUI {
-    protected Pane topToolbar;
-    protected AppYesNoCancelSingleton yesNoCancelDialog;
-    protected AppMessageSingleton messageDialog;
-    protected AppTextInputSingleton textInputDialog;
-    protected AppFileEditor fileEditor;
+    /**
+     * Public constructor for the AppGUI that builds a GUI
+     * from an instance of AppTemplate and a Stage provided
+     * by the Java main thread.
+     * 
+     * @param app The AppTemplate instance that will make use of this GUI.
+     * 
+     * @param stage The Stage object provided by the Java main thread.
+     */
+    public AppGUI(AppTemplate app, Stage stage) {
+        this.app = app;
+        this.stage = stage;
+        this.title = app.getName();
+        this.icon = app.getImage();
+        this.layout = new Pane();
+        this.scene = new Scene(this.layout, 300, 300);
+        this.stage.setScene(this.scene);
+    }
+    /**
+     * Public mutator method for the AppGUI's layout Pane.
+     * Allows a Pane to be provided by a separate class.
+     * 
+     * @param layout The provided Pane.
+     */
+    public void setLayout(Pane layout) { this.layout = layout; }
 }
